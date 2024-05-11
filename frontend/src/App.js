@@ -1,8 +1,16 @@
+import React from 'react';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
   return (
-    <>
-      <h1>NOah</h1>
-    </>
+    <Router>
+      <>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" />
+        </Routes>
+      </>
+    </Router>
   );
 }
 
