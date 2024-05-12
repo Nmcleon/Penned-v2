@@ -1,0 +1,20 @@
+.trending,
+.new {
+  margin-top: 40px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 24px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.trending h2,
+.new h2 {
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
