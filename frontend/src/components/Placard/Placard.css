@@ -1,0 +1,22 @@
+.placard {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.placard-img img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #add8e6;
+}
+
+.placard-name {
+  flex: 1;
+}
+
+.placard-name h4 {
+  margin: 0;
+}
