@@ -1,0 +1,19 @@
+.prompt-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.prompt-text h2 {
+  margin: 0;
+}
+
+.prompt-text span {
+  color: #666;
+}
