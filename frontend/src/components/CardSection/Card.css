@@ -31,7 +31,7 @@ p {
 .card-categories p {
   padding: 4px 8px;
   background-color: transparent;
-  color: white;
+  color: #2b7a9b;
   border: 1px solid #2b7a9b;
   border-radius: 16px;
 }
@@ -39,7 +39,7 @@ p {
 .card-date p {
   padding: 4px 8px;
   background-color: transparent;
-  color: white;
+  color: #666e;
   border: 1px solid #666;
   border-radius: 16px;
 }
