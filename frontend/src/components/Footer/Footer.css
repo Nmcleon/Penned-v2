@@ -1,0 +1,126 @@
+.footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a142f;
+  color: white;
+  margin-top: 24px;
+  min-height: 360px;
+}
+
+.newsletter {
+  min-height: 180px;
+  top: 0;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .newsletter {
+    background: rgba(0, 0, 0, 0.12);
+  }
+}
+
+.newsletter-text {
+  color: #fff;
+}
+
+.input-wrapper {
+  display: flex;
+  border-radius: 40px;
+  max-width: 100%;
+  position: relative;
+  background: white;
+  box-shadow: 0 4px 20px -2px #e9e9e9;
+}
+
+.newsletter-input {
+  border: 2px solid transparent;
+  outline: none;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  transition: all 0.5s;
+  width: 100%;
+  padding: 1em 2rem;
+  border-radius: 50px;
+  width: 100%;
+}
+
+.newsletter-input:hover,
+.newsletter-input:focus {
+  border: 2px solid #4a9dec;
+  box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+  background-color: white;
+}
+
+.newsletter-cta img {
+  height: 34px;
+  width: 34px;
+}
+
+.newsletter-cta {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  height: 80%;
+  aspect-ratio: 1;
+  position: absolute;
+  right: 0;
+  top: 10%;
+}
+
+.footer-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-nav ul {
+  display: flex;
+  list-style: none;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav li {
+  display: inline-block;
+}
+
+.footer-links {
+  text-decoration: none;
+  color: inherit;
+}
+
+.socialmedia {
+  display: flex;
+  margin-top: 40px;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.social-icon-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.website-rights {
+  margin: 38px;
+}

@@ -4,6 +4,7 @@ import './Home.css';
 import Search from '../Search/Search';
 import Card from '../CardSection/Card';
 import Prompt from '../Prompt/Prompt';
+import Footer from '../Footer/Footer';
 
 function Home() {
   return (
@@ -26,6 +27,7 @@ function Home() {
         </div>
       </div>
       <Prompt />
+      <Footer />
     </>
   );
 }
