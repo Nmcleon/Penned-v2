@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css';
 import Placard from '../Placard/Placard';
-import { Button } from '../Button';
+import { Button } from '../Button/Button';
 
 export default function Card() {
   return (

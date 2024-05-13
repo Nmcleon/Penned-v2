@@ -1,3 +1,5 @@
+@import '../../assets/styles/styles.css';
+
 .search-container {
   display: flex;
   align-items: center;
@@ -8,9 +10,18 @@
 
 .search-input {
   min-width: 749px;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
+  padding: 8px 8px;
+  border: 1px solid var(--color-secondary-light);
+  outline: none;
   border-radius: 4px;
   font-size: 16px;
   margin-right: 8px;
+  box-shadow: 0 4px 20px -2px var(--colo-light-grey);
+}
+
+.search-input:hover,
+.search-input:focus {
+  border: 1px solid var(--color-secondary-dark);
+  box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+  background-color: var(--color-white);
 }

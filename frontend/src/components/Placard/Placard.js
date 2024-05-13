@@ -1,5 +1,5 @@
 import React from 'react';
-import './Placard.css'; // Assuming you have a CSS file named Placard.css
+import './Placard.css';
 
 export default function Placard() {
   return (

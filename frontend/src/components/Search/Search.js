@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Search.css';
-import { Button } from '../Button';
+import { Button } from '../Button/Button';
 
 export default function Search() {
   const [searchText, setSearchText] = useState('');
