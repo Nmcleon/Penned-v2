@@ -187,9 +187,3 @@ li {
     transition: 250ms;
   }
 }
-
-@media (max-width: 2560px) {
-  .nav-menu {
-    width: 60vh;
-  }
-}
