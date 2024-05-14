@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import logo from '../../assets/logo.svg';
 import { Link } from 'react-router-dom';
 import { Button } from '../Button/Button';
-/*
-import '../../assets/styles/styles.css';*/
 import './Navbar.css';
 
 function Navbar() {

@@ -1,3 +1,4 @@
+@import url('../../assets/styles/styles.css');
 .placard {
   display: flex;
   align-items: center;
@@ -10,7 +11,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid #add8e6;
+  border: 2px solid var(--color-secondary-dark);
 }
 
 .placard-name {

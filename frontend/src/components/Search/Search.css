@@ -9,7 +9,7 @@
 }
 
 .search-input {
-  min-width: 749px;
+  max-width: 749px;
   padding: 8px 8px;
   border: 1px solid var(--color-secondary-light);
   outline: none;

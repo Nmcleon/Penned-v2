@@ -1,3 +1,5 @@
+@import url('../../assets/styles/styles.css');
+
 .prompt-container {
   display: flex;
   align-items: center;
@@ -6,7 +8,7 @@
   margin-top: 24px;
   padding: 20px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-grey);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -15,5 +17,23 @@
 }
 
 .prompt-text span {
-  color: #666;
+  color: var(--color-dark-grey);
+}
+
+@media (max-width: 480px) {
+  .prompt-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .prompt-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 }

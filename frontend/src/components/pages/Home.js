@@ -1,6 +1,5 @@
 import React from 'react';
 import HeroSection from '../HeroSection/HeroSection';
-import './Home.css';
 import Search from '../Search/Search';
 import Card from '../CardSection/Card';
 import Prompt from '../Prompt/Prompt';
@@ -26,8 +25,6 @@ function Home() {
           <Card />
         </div>
       </div>
-      <Prompt />
-      <Footer />
     </>
   );
 }
