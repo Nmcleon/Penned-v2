@@ -4,14 +4,7 @@ import Prompt from '../components/Prompt/Prompt';
 import Search from '../components/Search/Search';
 import Footer from '../components/Footer/Footer';
 //import data from '../assets/cardData';
-import data from '../data/db.json';
-
-export const cardElement = data.blogs.map((blog) => {
-  return <Card key={blog.id} {...blog} />;
-});
-{
-  /*removed blog={blog} instead used spread syntax instead got rid of .blog in the Card component */
-}
+import { cardElement } from '../customHook/cardElement';
 
 export default function Blog() {
   return (

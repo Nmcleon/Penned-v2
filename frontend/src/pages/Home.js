@@ -4,7 +4,7 @@ import './Home.css';
 import Search from '../components/Search/Search';
 import Prompt from '../components/Prompt/Prompt';
 import Footer from '../components/Footer/Footer';
-import { cardElement } from './Blogs';
+import { cardElement } from '../customHook/cardElement';
 import useFetch from '../customHook/useFetch';
 
 function Home() {

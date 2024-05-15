@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import Blogs from './pages/Blogs';
 import Author from './pages/Author';
 import Article from './pages/Article';
+import CreateArticle from './pages/CreateArticle';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route exact path="/Blogs" element={<Blogs />} />
           <Route exact path="/Author" element={<Author />} />
           <Route exact path="/Article" element={<Article />} />
+          <Route exact path="/Article/:id" element={<Article />} />
+          <Route exact path="/Create" element={<CreateArticle />} />
         </Routes>
       </>
     </Router>

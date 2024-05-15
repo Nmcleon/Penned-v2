@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '../Button/Button';
 import './Prompt.css';
+import { Link } from 'react-router-dom';
 
 export default function Prompt() {
   return (
@@ -12,7 +13,10 @@ export default function Prompt() {
           </h2>
         </div>
         <div className="prompt-cta">
-          <Button> Write now</Button>
+          <Button>
+            {' '}
+            <Link to="/Create">Write now</Link>
+          </Button>
         </div>
       </div>
     </>
