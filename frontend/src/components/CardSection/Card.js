@@ -5,12 +5,12 @@ import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 import Badge from '../Badge/Badge';
 
-export default function Card() {
+export default function Card(props) {
   return (
     <>
       <div className="card">
         <div className="card-img">
-          <img src="images/rivian.jpg" alt="" />
+          <img src={`./images/${props.img}`} alt="" />
         </div>
         <Badge />
         {/* <div className="card-badge">
@@ -24,13 +24,10 @@ export default function Card() {
   </div>*/}
         <div className="card-details">
           <div className="card-title">
-            <h3>Rivian Stock Plamit</h3>
+            <h3>{props.title}</h3>
           </div>
           <div className="card-text">
-            <p>
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when
-            </p>
+            <p>{props.subtitle}</p>
           </div>
         </div>
         <div className="card-action">

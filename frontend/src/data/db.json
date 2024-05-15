@@ -1,0 +1,32 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "The Future of Electric Vehicles",
+      "img": "rivian.jpg",
+      "subtitle": "Advancements in Battery Technology",
+      "author": "John Doe"
+    },
+    {
+      "id": 2,
+      "title": "Exploring Renewable Energy Sources",
+      "img": "abt-hero.jpg",
+      "subtitle": "Solar Power: Harnessing the Sun's Energy",
+      "author": "Jane Smith"
+    },
+    {
+      "id": 3,
+      "title": "The Rise of Artificial Intelligence",
+      "img": "https://example.com/ai-rise.jpg",
+      "subtitle": "Machine Learning: Teaching Computers to Learn",
+      "author": "Alice Johnson"
+    },
+    {
+      "id": 4,
+      "title": "The Importance of Diversity in Tech",
+      "img": "https://example.com/diversity-tech.jpg",
+      "subtitle": "Breaking Barriers: Women in STEM",
+      "author": "Robert Brown"
+    }
+  ]
+}
