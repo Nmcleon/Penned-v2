@@ -18,7 +18,7 @@ export default function Blog() {
         </div>
 
         <div className="new">
-          <h2>New</h2>
+          <h2>All Posts</h2>
           <div className="content">
             <Card />
             <Card />

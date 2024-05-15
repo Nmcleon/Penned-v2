@@ -33,19 +33,19 @@ export default function Footer() {
               </li>
 
               <li className="footer-item">
-                <Link to="/" className="footer-links">
-                  News
+                <Link to="/Blog" className="footer-links">
+                  Blogs
                 </Link>
               </li>
 
               <li className="footer-item">
-                <Link to="/" className="footer-links">
+                <Link to="/About" className="footer-links">
                   About us
                 </Link>
               </li>
 
               <li className="footer-item">
-                <Link to="/" className="footer-links">
+                <Link to="/Contact" className="footer-links">
                   Contact us
                 </Link>
               </li>
