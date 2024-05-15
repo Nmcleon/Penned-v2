@@ -1,0 +1,31 @@
+@import url('../../assets/styles/styles.css');
+@import url('../CardSection/Card.css');
+
+.card-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 8px 0px 8px;
+}
+
+.card-categories {
+  display: flex;
+  gap: 8px;
+}
+
+.card-categories p {
+  padding: 4px 8px;
+  background-color: transparent;
+  color: #2b7a9b;
+  border: 1px solid #2b7a9b;
+  border-radius: 16px;
+}
+
+.card-date p {
+  padding: 4px 8px;
+  background-color: transparent;
+  color: #666e;
+  border: 1px solid #666;
+  border-radius: 16px;
+}

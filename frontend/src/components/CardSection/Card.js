@@ -2,6 +2,8 @@ import React from 'react';
 import './Card.css';
 import Placard from '../Placard/Placard';
 import { Button } from '../Button/Button';
+import { Link } from 'react-router-dom';
+import Badge from '../Badge/Badge';
 
 export default function Card() {
   return (
@@ -10,7 +12,8 @@ export default function Card() {
         <div className="card-img">
           <img src="images/rivian.jpg" alt="" />
         </div>
-        <div className="card-badge">
+        <Badge />
+        {/* <div className="card-badge">
           <div className="card-categories">
             <p>tech</p>
             <p>auto</p>
@@ -18,7 +21,7 @@ export default function Card() {
           <div className="card-date">
             <p>May 15, 2022</p>
           </div>
-        </div>
+  </div>*/}
         <div className="card-details">
           <div className="card-title">
             <h3>Rivian Stock Plamit</h3>
@@ -34,7 +37,7 @@ export default function Card() {
           <Placard />
           <div className="card-cta">
             <Button buttonSize="btn--medium" buttonStyle="outline">
-              Read More
+              <Link to="/Article">Read More</Link>
             </Button>
           </div>
         </div>

@@ -33,7 +33,7 @@ export default function Footer() {
               </li>
 
               <li className="footer-item">
-                <Link to="/Blog" className="footer-links">
+                <Link to="/Blogs" className="footer-links">
                   Blogs
                 </Link>
               </li>
