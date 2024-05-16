@@ -19,6 +19,10 @@ export default function Article() {
 
   if (!blog) return <div>Blog not found</div>;
 
+  const otherBlogs = data.blogs
+    .filter((otherBlog) => otherBlog.id !== id)
+    .slice(0, 2);
+
   return (
     <>
       <section className="article">
@@ -40,9 +44,11 @@ export default function Article() {
             </div>
           ))}
         </div>
+        <h2 className="subtopic">Next Read</h2>
         <div className="suggestion">
-          <h2 className="subtopic">Next Read</h2>
-          <Card />
+          {otherBlogs.map((otherBlog) => (
+            <Card key={otherBlog.id} {...otherBlog} />
+          ))}
         </div>
       </section>
       <Prompt />
