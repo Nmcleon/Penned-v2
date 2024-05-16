@@ -1,0 +1,49 @@
+{
+  "blogs": [
+    {
+      "id": "1",
+      "title": "Rivian stock plummets to a new low",
+      "image": "rivian.jpg",
+      "sections": [
+        {
+          "subtopic": "Reasons for the Plummet",
+          "details": "The recent decline in Rivian's stock price can be attributed to a variety of factors. One significant reason is the broader market volatility, particularly in the tech and automotive sectors. Additionally, concerns about supply chain disruptions and production delays have weighed heavily on investor sentiment."
+        },
+        {
+          "subtopic": "Impact on Investors",
+          "details": "The sharp decline in Rivian's stock price has had a significant impact on investors. Many shareholders have experienced losses as the stock continues to plummet. Some long-term investors remain optimistic about Rivian's prospects and see this downturn as a buying opportunity, while others are concerned about the company's ability to navigate current challenges."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Another Article Title",
+      "image": "another.jpg",
+      "sections": [
+        {
+          "subtopic": "Section One",
+          "details": "Details about the first section of the second article."
+        },
+        {
+          "subtopic": "Section Two",
+          "details": "Details about the second section of the second article."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Another Article Title",
+      "image": "abt-reason.jpg",
+      "sections": [
+        {
+          "subtopic": "Section One",
+          "details": "Details about the first section of the second article."
+        },
+        {
+          "subtopic": "Section Two",
+          "details": "Details about the second section of the second article."
+        }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@ export default function Card(props) {
     <>
       <div className="card">
         <div className="card-img">
-          <img src={`./images/${props.img}`} alt="" />
+          <img src={`./images/${props.image}`} alt="" />
         </div>
         <Badge />
         {/* <div className="card-badge">
@@ -34,7 +34,7 @@ export default function Card(props) {
           <Placard />
           <div className="card-cta">
             <Button buttonSize="btn--medium" buttonStyle="outline">
-              <Link to="/Article">Read More</Link>
+              Read More
             </Button>
           </div>
         </div>
