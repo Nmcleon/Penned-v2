@@ -34,7 +34,10 @@ export default function Article() {
           <Badge tags={blog.tags} publishedAt={blog.publishedAt} />
         </div>
         <div className="article-img">
-          <img src={blog.image} alt={blog.title} />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/${blog.image}`}
+            alt={blog.title}
+          />
         </div>
         <div className="main">
           {blog.sections.map((section, index) => (
