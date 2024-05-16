@@ -6,6 +6,12 @@ import { Link } from 'react-router-dom';
 import Badge from '../Badge/Badge';
 
 export default function Card(props) {
+  const articleUrl = `/article/${props.id}`;
+  const firstSectionSubtopic =
+    props.sections && props.sections.length > 0
+      ? props.sections[0].subtopic
+      : '';
+
   return (
     <div className="card">
       <div className="card-img">
@@ -17,15 +23,21 @@ export default function Card(props) {
           <h3>{props.title}</h3>
         </div>
         <div className="card-text">
-          <p>{props.subtitle}</p>
+          <p>{firstSectionSubtopic}</p>
         </div>
       </div>
       <div className="card-action">
         <Placard author={props.author} />
         <div className="card-cta">
-          <Button buttonSize="btn--medium" buttonStyle="outline">
-            Read More
-          </Button>
+          <Link to={`/Article/${props.id}`}>
+            <Button
+              buttonSize="btn--medium"
+              buttonStyle="outline"
+              href={articleUrl}
+            >
+              Read More
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

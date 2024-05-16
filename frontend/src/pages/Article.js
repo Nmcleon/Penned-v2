@@ -27,7 +27,7 @@ export default function Article() {
           <div className="article-heading">
             <h2>{blog.title}</h2>
           </div>
-          <Badge />
+          <Badge tags={blog.tags} publishedAt={blog.publishedAt} />
         </div>
         <div className="article-img">
           <img src={blog.image} alt={blog.title} />

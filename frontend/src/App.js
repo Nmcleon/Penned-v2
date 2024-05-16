@@ -20,9 +20,9 @@ function App() {
           <Route exact path="/Contact" element={<Contact />} />
           <Route exact path="/Blogs" element={<Blogs />} />
           <Route exact path="/Author" element={<Author />} />
+          <Route exact path="/Author/:id" element={<Author />} />
           <Route exact path="/Article" element={<Article />} />
           <Route exact path="/Article/:id" element={<Article />} />
-          <Route path="/author/:id" element={<Author />} />
           <Route exact path="/Create" element={<CreateArticle />} />
         </Routes>
       </>

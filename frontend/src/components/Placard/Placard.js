@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './Placard.css';
 
 export default function Placard({ author }) {
+  if (!author) {
+    return null;
+  }
+
   return (
     <div className="placard">
       <div className="placard-img">
