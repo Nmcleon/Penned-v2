@@ -4,6 +4,7 @@
       "id": "1",
       "title": "Rivian stock plummets to a new low",
       "image": "rivian.jpg",
+      "userId": "Young King",
       "author": {
         "id": "1",
         "name": "Young King",
@@ -26,6 +27,7 @@
       "id": "2",
       "title": "Another Article Title",
       "image": "another.jpg",
+      "userId": "Big G",
       "author": {
         "id": "2",
         "name": "Big G",
@@ -48,6 +50,7 @@
       "id": "3",
       "title": "Another Article Title",
       "image": "abt-reason.jpg",
+      "userId": "Lucy Lee",
       "author": {
         "id": "3",
         "name": "Lucy Lee",
