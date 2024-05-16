@@ -22,6 +22,7 @@ function App() {
           <Route exact path="/Author" element={<Author />} />
           <Route exact path="/Article" element={<Article />} />
           <Route exact path="/Article/:id" element={<Article />} />
+          <Route path="/author/:id" element={<Author />} />
           <Route exact path="/Create" element={<CreateArticle />} />
         </Routes>
       </>

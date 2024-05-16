@@ -1,19 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Author from '../../pages/Author';
 import './Placard.css';
 
-export default function Placard() {
+export default function Placard({ author }) {
   return (
     <div className="placard">
       <div className="placard-img">
-        <img src="/images/rivian.jpg" alt="User" />
+        <img src={`/images/${author.image}`} alt={author.name} />
       </div>
       <div className="placard-name">
         <h4>
-          <Link to="/Author" element={<Author />}>
-            Young King
-          </Link>
+          <Link to={`/author/${author.id}`}>{author.name}</Link>
         </h4>
       </div>
     </div>

@@ -1,11 +1,10 @@
-// src/pages/Article.js
 import React from 'react';
 import Placard from '../components/Placard/Placard';
 import Prompt from '../components/Prompt/Prompt';
 import Footer from '../components/Footer/Footer';
 import Card from '../components/CardSection/Card';
 import Badge from '../components/Badge/Badge';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import useFetch from '../customHook/useFetch';
 import './Article.css';
 
@@ -24,7 +23,7 @@ export default function Article() {
     <>
       <section className="article">
         <div className="article-header">
-          <Placard />
+          <Placard author={blog.author} />
           <div className="article-heading">
             <h2>{blog.title}</h2>
           </div>

@@ -4,6 +4,13 @@
       "id": "1",
       "title": "Rivian stock plummets to a new low",
       "image": "rivian.jpg",
+      "author": {
+        "id": "1",
+        "name": "Young King",
+        "image": "young-king.png"
+      },
+      "tags": ["tech", "auto"],
+      "publishedAt": "2024-05-16",
       "sections": [
         {
           "subtopic": "Reasons for the Plummet",
@@ -19,6 +26,13 @@
       "id": "2",
       "title": "Another Article Title",
       "image": "another.jpg",
+      "author": {
+        "id": "2",
+        "name": "Big G",
+        "image": "big-g.png"
+      },
+      "tags": ["trend", "life"],
+      "publishedAt": "2024-05-16",
       "sections": [
         {
           "subtopic": "Section One",
@@ -34,6 +48,13 @@
       "id": "3",
       "title": "Another Article Title",
       "image": "abt-reason.jpg",
+      "author": {
+        "id": "3",
+        "name": "Lucy Lee",
+        "image": "lucy-lee.png"
+      },
+      "tags": ["tech", "auto"],
+      "publishedAt": "2024-05-16",
       "sections": [
         {
           "subtopic": "Section One",

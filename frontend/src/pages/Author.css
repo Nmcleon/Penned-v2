@@ -41,3 +41,8 @@
   letter-spacing: -2px;
   color: var(--color-dark-grey);
 }
+
+.my-posts-content {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -7,38 +7,27 @@ import Badge from '../Badge/Badge';
 
 export default function Card(props) {
   return (
-    <>
-      <div className="card">
-        <div className="card-img">
-          <img src={`./images/${props.image}`} alt="" />
+    <div className="card">
+      <div className="card-img">
+        <img src={`./images/${props.image}`} alt="" />
+      </div>
+      <Badge tags={props.tags} publishedAt={props.publishedAt} />
+      <div className="card-details">
+        <div className="card-title">
+          <h3>{props.title}</h3>
         </div>
-        <Badge />
-        {/* <div className="card-badge">
-          <div className="card-categories">
-            <p>tech</p>
-            <p>auto</p>
-          </div>
-          <div className="card-date">
-            <p>May 15, 2022</p>
-          </div>
-  </div>*/}
-        <div className="card-details">
-          <div className="card-title">
-            <h3>{props.title}</h3>
-          </div>
-          <div className="card-text">
-            <p>{props.subtitle}</p>
-          </div>
-        </div>
-        <div className="card-action">
-          <Placard />
-          <div className="card-cta">
-            <Button buttonSize="btn--medium" buttonStyle="outline">
-              Read More
-            </Button>
-          </div>
+        <div className="card-text">
+          <p>{props.subtitle}</p>
         </div>
       </div>
-    </>
+      <div className="card-action">
+        <Placard author={props.author} />
+        <div className="card-cta">
+          <Button buttonSize="btn--medium" buttonStyle="outline">
+            Read More
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 }
