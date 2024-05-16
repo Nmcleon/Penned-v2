@@ -69,5 +69,47 @@
         }
       ]
     }
+  ],
+  "users": [
+    {
+      "id": "user123",
+      "username": "exampleUser",
+      "authenticationData": {
+        "token": "abc123",
+        "expires": "2024-05-17T00:00:00Z"
+      }
+    },
+    {
+      "id": "user456",
+      "username": "anotherUser",
+      "authenticationData": {
+        "token": "def456",
+        "expires": "2024-05-18T00:00:00Z"
+      }
+    },
+    {
+      "id": "user789",
+      "username": "Young King",
+      "authenticationData": {
+        "token": "ghi789",
+        "expires": "2024-05-19T00:00:00Z"
+      }
+    },
+    {
+      "id": "user101112",
+      "username": "Big G",
+      "authenticationData": {
+        "token": "jkl101112",
+        "expires": "2024-05-20T00:00:00Z"
+      }
+    },
+    {
+      "id": "user131415",
+      "username": "Lucy Lee",
+      "authenticationData": {
+        "token": "mno131415",
+        "expires": "2024-05-21T00:00:00Z"
+      }
+    }
   ]
 }

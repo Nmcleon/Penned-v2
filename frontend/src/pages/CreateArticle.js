@@ -10,22 +10,56 @@ export default function CreateArticle() {
   const [subtopic2, setSubtopic2] = useState('');
   const [details2, setDetails2] = useState('');
   const [tags, setTags] = useState([]);
+  const [authorName, setAuthorName] = useState('');
+  const [authorImg, setAuthorImg] = useState(null);
   const [date, setDate] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const article = {
+    const blog = {
       title,
       image: img,
       tags,
-      date: new Date().toLocaleDateString(), // Get current date
+      publishedAt: new Date().toISOString(),
+      author: {
+        name: authorName,
+        image: authorImg,
+      },
       sections: [
         { subtopic: subtopic1, details: details1 },
         ...(subtopic2 ? [{ subtopic: subtopic2, details: details2 }] : []),
       ],
     };
-    console.log('Article Created:', JSON.stringify(article, null, 2));
-    // Logic to send the article data to the server
+
+    console.log('Article Created:', JSON.stringify(blog, null, 2));
+
+    try {
+      const response = await fetch('http://localhost:8000/blogs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(blog),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create article');
+      }
+
+      const data = await response.json();
+      console.log('Article created successfully:', data);
+    } catch (error) {
+      console.error('Error creating article:', error);
+    }
+  };
+
+  const handleAuthorImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAuthorImg(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -85,6 +119,24 @@ export default function CreateArticle() {
               type="text"
               value={tags.join(',')}
               onChange={(e) => setTags(e.target.value.split(','))}
+            />
+          </div>
+          <div className="form-group">
+            <label>Author Name</label>
+            <input
+              type="text"
+              value={authorName}
+              onChange={(e) => setAuthorName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Author Image</label>
+            <input
+              type="file"
+              onChange={handleAuthorImageUpload}
+              accept="image/*"
+              required
             />
           </div>
 

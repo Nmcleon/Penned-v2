@@ -12,12 +12,12 @@ export default function SignIn() {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get('http://localhost:8000/data/db.json');
-      const user = response.data.users.find((u) => u.username === username);
-      if (!user || !bcrypt.compareSync(password, user.hashedPassword)) {
-        alert('Invalid username or password.');
-        return;
-      }
+      const response = await axios.post('http://localhost:8000/api/login', {
+        username,
+        password,
+      });
+      const { token } = response.data;
+      localStorage.setItem('authToken', token);
       navigate('/');
     } catch (error) {
       console.error('Error signing in:', error);
@@ -50,10 +50,12 @@ export default function SignIn() {
             required
           />
         </div>
-        <button type="submit">Sign In</button>
+        <button type="submit">
+          <Link to="/">Sign in</Link>
+        </button>
       </form>
       <p className="signup-message">
-        Don't have an account? <Link to="/signup">Sign Up</Link>
+        Don't have an account? <Link to="/Signup">Sign Up</Link>
       </p>
     </div>
   );

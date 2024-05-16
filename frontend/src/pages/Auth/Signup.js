@@ -22,12 +22,15 @@ export default function SignUp() {
     }
     try {
       const newUser = {
-        username: `${firstName.toLowerCase()}${lastName.toLowerCase()}`,
-        hashedPassword: bcrypt.hashSync(password, 12),
-        imageUrl: imageUrl,
+        firstName,
+        lastName,
+        email,
+        dob,
+        password,
+        imageUrl,
       };
       const response = await axios.post(
-        'http://localhost:8000/data/db.json/users',
+        'http://localhost:8000/api/register',
         newUser
       );
       navigate('/signin');
