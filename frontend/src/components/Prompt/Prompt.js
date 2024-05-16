@@ -15,7 +15,9 @@ export default function Prompt() {
         <div className="prompt-cta">
           <Button>
             {' '}
-            <Link to="/Create">Write now</Link>
+            <Link to="/Create" className="link-no-decoration">
+              Write now
+            </Link>
           </Button>
         </div>
       </div>

@@ -1,4 +1,11 @@
 @import '../../assets/styles/styles.css';
+a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
 
 .btn {
   padding: 8px 20px;

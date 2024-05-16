@@ -20,6 +20,11 @@
   color: var(--color-dark-grey);
 }
 
+.prompt-cta Link {
+  text-decoration: none;
+  color: inherit;
+}
+
 @media (max-width: 480px) {
   .prompt-container {
     display: flex;
