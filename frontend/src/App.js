@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Blogs from './pages/Blogs';
-import Author from './pages/Author';
-import Article from './pages/Article';
-import CreateArticle from './pages/CreateArticle';
+import Home from './pages/home/Home';
+import About from './pages/about/About';
+import Contact from './pages/Contact/Contact';
+import Blogs from './pages/blogs/Blogs';
+import Author from './pages/author/Author';
+import Article from './pages/article/Article';
+import CreateArticle from './pages/blogs/CreateArticle';
 import SignIn from './pages/Auth/Signin';
 import SignUp from './pages/Auth/Signup';
 
