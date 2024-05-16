@@ -31,6 +31,7 @@ export default function Card(props) {
         <div className="card-cta">
           <Link to={`/Article/${props.id}`}>
             <Button
+              to={`/article/${props.id}`}
               buttonSize="btn--medium"
               buttonStyle="outline"
               href={articleUrl}

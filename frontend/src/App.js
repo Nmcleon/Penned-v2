@@ -8,6 +8,8 @@ import Blogs from './pages/Blogs';
 import Author from './pages/Author';
 import Article from './pages/Article';
 import CreateArticle from './pages/CreateArticle';
+import SignIn from './pages/Auth/Signin';
+import SignUp from './pages/Auth/Signup';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route exact path="/Article" element={<Article />} />
           <Route exact path="/Article/:id" element={<Article />} />
           <Route exact path="/Create" element={<CreateArticle />} />
+          <Route exact path="/SignUp" element={<SignUp />} />
+          <Route exact path="/SignIn" element={<SignIn />} />
         </Routes>
       </>
     </Router>
