@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../assets/logo.svg';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Button } from '../Button/Button';
 import './Navbar.css';
 
@@ -37,24 +37,24 @@ function Navbar() {
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMenu}>
+              <NavLink to="/" className="nav-links" onClick={closeMenu}>
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/Blogs" className="nav-links" onClick={closeMenu}>
+              <NavLink to="/Blogs" className="nav-links" onClick={closeMenu}>
                 Blogs
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/About" className="nav-links" onClick={closeMenu}>
+              <NavLink to="/About" className="nav-links" onClick={closeMenu}>
                 About us
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/Contact" className="nav-links" onClick={closeMenu}>
+              <NavLink to="/Contact" className="nav-links" onClick={closeMenu}>
                 Contact
-              </Link>
+              </NavLink>
             </li>
             <li>
               <Link
