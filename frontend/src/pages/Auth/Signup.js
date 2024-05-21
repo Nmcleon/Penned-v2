@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { auth, db } from '../../firebase/firebase';
 import './Auth.css';
 import { Button } from '../../components/Button/Button';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState('');
@@ -22,7 +23,8 @@ export default function SignUp() {
       return;
     }
     try {
-      const userCredential = await auth.createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
         email,
         password
       );
@@ -137,7 +139,7 @@ export default function SignUp() {
         </div>
         {error && <p className="error-message">{error}</p>}
         <div className="button-container">
-          <Button type="submit">Sign up</Button>
+          <Button onClick={handleSignUp}>Sign up</Button>
         </div>
       </form>
       <p className="signin-message">
