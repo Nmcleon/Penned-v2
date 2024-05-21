@@ -4,6 +4,8 @@ import { auth, db } from '../../firebase/firebase';
 import './Auth.css';
 import { Button } from '../../components/Button/Button';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState('');
@@ -38,7 +40,8 @@ export default function SignUp() {
         imageUrl,
       });
 
-      navigate('/signin');
+      navigate('/');
+      toast.success('Sign up successful!');
     } catch (error) {
       setError('Error signing up: ' + error.message);
       console.error('Error signing up:', error);
@@ -145,6 +148,7 @@ export default function SignUp() {
       <p className="signin-message">
         Already have an account? <Link to="/signin">Sign In</Link>
       </p>
+      <ToastContainer />
     </div>
   );
 }

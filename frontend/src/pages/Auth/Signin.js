@@ -3,9 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase';
 import './Auth.css';
 import { Button } from '../../components/Button/Button';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignIn() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -13,10 +14,10 @@ export default function SignIn() {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      await auth.signInWithEmailAndPassword(username, password);
+      await signInWithEmailAndPassword(auth, email, password);
       navigate('/');
     } catch (error) {
-      setError('Invalid username or password');
+      setError('Invalid email or password');
       console.error('Error signing in:', error);
     }
   };
@@ -26,13 +27,13 @@ export default function SignIn() {
       <h2>Sign In</h2>
       <form onSubmit={handleSignIn}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
-            id="username"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -49,7 +50,7 @@ export default function SignIn() {
         </div>
         {error && <p className="error-message">{error}</p>}
         <div className="button-container">
-          <Button type="submit">Sign in</Button>
+          <Button onClick={handleSignIn}>Sign in</Button>
         </div>
       </form>
       <p className="signup-message">
