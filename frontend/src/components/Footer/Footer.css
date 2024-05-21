@@ -1,5 +1,9 @@
 @import url('../../assets/styles/styles.css');
 
+button {
+  padding: 0;
+}
+
 .footer {
   position: relative;
   display: flex;
@@ -64,8 +68,8 @@
 }
 
 .newsletter-cta img {
-  height: 34px;
-  width: 34px;
+  height: 36px;
+  width: 36px;
 }
 
 .newsletter-cta {
@@ -76,7 +80,7 @@
   aspect-ratio: 1;
   position: absolute;
   right: 0;
-  top: 10%;
+  width: 60px;
 }
 
 .footer-link {
