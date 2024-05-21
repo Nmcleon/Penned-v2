@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import bcrypt from 'bcryptjs';
 import './Auth.css';
+import { Button } from '../../components/Button/Button';
 
 export default function SignIn() {
   const [username, setUsername] = useState('');
@@ -50,9 +50,11 @@ export default function SignIn() {
             required
           />
         </div>
-        <button type="submit">
-          <Link to="/">Sign in</Link>
-        </button>
+        <div className="button-container">
+          <Button type="submit">
+            <Link to="/">Sign in</Link>
+          </Button>
+        </div>
       </form>
       <p className="signup-message">
         Don't have an account? <Link to="/Signup">Sign Up</Link>
