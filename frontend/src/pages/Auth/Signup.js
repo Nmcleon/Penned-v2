@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
-import bcrypt from 'bcryptjs';
+import { auth, db } from '../../firebase/firebase';
 import './Auth.css';
+import { Button } from '../../components/Button/Button';
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState('');
@@ -12,29 +12,33 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Passwords do not match!');
+      setError('Passwords do not match!');
       return;
     }
     try {
-      const newUser = {
+      const userCredential = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      await db.collection('users').doc(user.uid).set({
         firstName,
         lastName,
         email,
         dob,
-        password,
         imageUrl,
-      };
-      const response = await axios.post(
-        'http://localhost:8000/api/register',
-        newUser
-      );
+      });
+
       navigate('/signin');
     } catch (error) {
+      setError('Error signing up: ' + error.message);
       console.error('Error signing up:', error);
     }
   };
@@ -110,6 +114,17 @@ export default function SignUp() {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="upload-image">Upload Image</label>
           <input
             type="file"
@@ -120,10 +135,14 @@ export default function SignUp() {
             }
           />
         </div>
-        <button type="submit">
-          <Link to="/">Sign In</Link>
-        </button>
+        {error && <p className="error-message">{error}</p>}
+        <div className="button-container">
+          <Button type="submit">Sign up</Button>
+        </div>
       </form>
+      <p className="signin-message">
+        Already have an account? <Link to="/signin">Sign In</Link>
+      </p>
     </div>
   );
 }

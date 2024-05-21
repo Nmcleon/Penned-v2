@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import { auth } from '../../firebase/firebase';
 import './Auth.css';
 import { Button } from '../../components/Button/Button';
 
 export default function SignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/login', {
-        username,
-        password,
-      });
-      const { token } = response.data;
-      localStorage.setItem('authToken', token);
+      await auth.signInWithEmailAndPassword(username, password);
       navigate('/');
     } catch (error) {
+      setError('Invalid username or password');
       console.error('Error signing in:', error);
     }
   };
@@ -31,7 +28,7 @@ export default function SignIn() {
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
-            type="text"
+            type="email"
             id="username"
             placeholder="Username"
             value={username}
@@ -50,10 +47,9 @@ export default function SignIn() {
             required
           />
         </div>
+        {error && <p className="error-message">{error}</p>}
         <div className="button-container">
-          <Button type="submit">
-            <Link to="/">Sign in</Link>
-          </Button>
+          <Button type="submit">Sign in</Button>
         </div>
       </form>
       <p className="signup-message">
