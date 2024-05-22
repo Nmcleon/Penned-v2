@@ -3,9 +3,16 @@ import logo from '../../assets/logo.svg';
 import { NavLink, Link } from 'react-router-dom';
 import { Button } from '../Button/Button';
 import './Navbar.css';
+import { useAuth } from '../../context/AuthContext';
+import { signOut } from 'firebase/auth';
+import { auth, db } from '../../firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 function Navbar() {
+  const { currentUser } = useAuth();
   const [click, setClick] = useState(false);
+  const [firstName, setFirstName] = useState('');
+
   const handleClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
 
@@ -20,9 +27,29 @@ function Navbar() {
 
   useEffect(() => {
     showButton();
-  }, []);
+    const fetchUserData = async () => {
+      if (currentUser) {
+        const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+        if (userDoc.exists()) {
+          setFirstName(userDoc.data().firstName);
+        }
+      }
+    };
+    fetchUserData();
+  }, [currentUser]);
 
   window.addEventListener('resize', showButton);
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log('User signed out');
+        closeMenu();
+      })
+      .catch((error) => {
+        console.error('Error signing out: ', error);
+      });
+  };
 
   return (
     <>
@@ -66,10 +93,28 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && (
+          {button && !currentUser && (
             <Button to="/SignIn" buttonStyle="btn--outline">
               Sign in
             </Button>
+          )}
+          {button && currentUser && (
+            <div className="dropdown">
+              <p onClick={handleClick}>Hi, {firstName}</p>
+              <div
+                className={
+                  click ? 'dropdown-content active' : 'dropdown-content'
+                }
+              >
+                <ul>
+                  <li>
+                    <Button onClick={handleLogout} buttonStyle="btn--outline">
+                      Log out
+                    </Button>
+                  </li>
+                </ul>
+              </div>
+            </div>
           )}
         </div>
       </nav>

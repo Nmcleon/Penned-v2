@@ -140,11 +140,11 @@ export default function SignUp() {
             }
           />
         </div>
-        {error && <p className="error-message">{error}</p>}
-        <div className="button-container">
-          <Button onClick={handleSignUp}>Sign up</Button>
-        </div>
       </form>
+      {error && <p className="error-message">{error}</p>}
+      <div className="button-container">
+        <Button onClick={handleSignUp}>Sign up</Button>
+      </div>
       <p className="signin-message">
         Already have an account? <Link to="/signin">Sign In</Link>
       </p>

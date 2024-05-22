@@ -63,3 +63,7 @@ button:hover {
 .signup-message a:hover {
   text-decoration: none;
 }
+
+.error-message {
+  margin-bottom: 16px;
+}

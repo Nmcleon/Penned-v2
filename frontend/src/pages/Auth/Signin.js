@@ -48,11 +48,11 @@ export default function SignIn() {
             required
           />
         </div>
-        {error && <p className="error-message">{error}</p>}
-        <div className="button-container">
-          <Button onClick={handleSignIn}>Sign in</Button>
-        </div>
       </form>
+      <div> {error && <p className="error-message">{error}</p>}</div>
+      <div className="button-container">
+        <Button onClick={handleSignIn}>Sign in</Button>
+      </div>
       <p className="signup-message">
         Don't have an account? <Link to="/Signup">Sign Up</Link>
       </p>

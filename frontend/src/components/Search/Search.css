@@ -1,7 +1,7 @@
 @import '../../assets/styles/styles.css';
 
 .search-container {
-  position: relative; /* Ensure the search container is the reference point for the absolute positioning */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
