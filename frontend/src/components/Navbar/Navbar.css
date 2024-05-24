@@ -230,3 +230,9 @@ li {
     transition: 250ms;
   }
 }
+
+@media (min-width: 961px) {
+  .mobile {
+    display: none;
+  }
+}

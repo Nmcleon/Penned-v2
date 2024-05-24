@@ -83,15 +83,24 @@ function Navbar() {
                 Contact
               </NavLink>
             </li>
-            <li>
-              <Link
-                to="/sign-up"
-                className="nav-links-mobile"
-                onClick={closeMenu}
-              >
-                Sign up
-              </Link>
-            </li>
+            <div className="mobile">
+              {currentUser ? (
+                <li className="nav-item">
+                  <p>Hi, {currentUser.firstName}</p>
+                </li>
+              ) : null}
+              <li className="nav-item">
+                <Button
+                  to={!currentUser ? '/signin' : ''}
+                  className="nav-links-mobile"
+                  onClick={closeMenu}
+                  buttonSize="btn--large"
+                  buttonStyle="btn--outline"
+                >
+                  {!currentUser ? 'Sign in' : 'Sign out'}
+                </Button>
+              </li>
+            </div>
           </ul>
           {button && !currentUser && (
             <Button to="/SignIn" buttonStyle="btn--outline">

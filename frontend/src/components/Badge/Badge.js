@@ -20,7 +20,7 @@ export default function Badge({ tags = [], publishedAt }) {
 
   if (typeof publishedAt !== 'string') {
     console.error('publishedAt is not a string:', typeof publishedAt);
-    return null; // Or return a placeholder element
+    return null;
   }
 
   return (
