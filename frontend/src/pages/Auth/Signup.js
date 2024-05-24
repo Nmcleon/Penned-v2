@@ -4,6 +4,8 @@ import { auth, db } from '../../firebase/firebase';
 import './Auth.css';
 import { Button } from '../../components/Button/Button';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { setDoc, doc } from 'firebase/firestore';
+import { uploadImage } from '../../firebase/firebaseUtils'; // Import the reusable function
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,9 +16,13 @@ export default function SignUp() {
   const [dob, setDob] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [file, setFile] = useState(null); // State for file upload
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -24,7 +30,9 @@ export default function SignUp() {
       setError('Passwords do not match!');
       return;
     }
+
     try {
+      // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -32,7 +40,14 @@ export default function SignUp() {
       );
       const user = userCredential.user;
 
-      await db.collection('users').doc(user.uid).set({
+      // Upload image if file is selected
+      let imageUrl = '';
+      if (file) {
+        imageUrl = await uploadImage(file, user.uid);
+      }
+
+      // Save user data in Firestore
+      await setDoc(doc(db, 'users', user.uid), {
         firstName,
         lastName,
         email,
@@ -40,6 +55,7 @@ export default function SignUp() {
         imageUrl,
       });
 
+      // Navigate to home page and show success message
       navigate('/');
       toast.success('Sign up successful!');
     } catch (error) {
@@ -135,16 +151,14 @@ export default function SignUp() {
             type="file"
             id="upload-image"
             accept="image/*"
-            onChange={(e) =>
-              setImageUrl(URL.createObjectURL(e.target.files[0]))
-            }
+            onChange={handleFileChange}
           />
         </div>
+        <Button onClick={handleSignUp} type="submit">
+          Sign Up
+        </Button>
       </form>
       {error && <p className="error-message">{error}</p>}
-      <div className="button-container">
-        <Button onClick={handleSignUp}>Sign up</Button>
-      </div>
       <p className="signin-message">
         Already have an account? <Link to="/signin">Sign In</Link>
       </p>
