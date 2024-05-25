@@ -93,7 +93,7 @@ function Navbar() {
                 <Button
                   to={!currentUser ? '/signin' : ''}
                   className="nav-links-mobile"
-                  onClick={() => (!currentUser ? closeMenu() : handleLogout())} // Conditional onClick handler
+                  onClick={() => (!currentUser ? closeMenu() : handleLogout())}
                   buttonSize="btn--large"
                   buttonStyle="btn--outline"
                 >
