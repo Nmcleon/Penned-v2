@@ -4,19 +4,18 @@ import { auth, db } from '../../firebase/firebase';
 import './Auth.css';
 import { Button } from '../../components/Button/Button';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { setDoc, doc } from 'firebase/firestore';
-import { uploadImage } from '../../firebase/firebaseUtils'; // Import the reusable function
-import { ToastContainer, toast } from 'react-toastify';
+import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { uploadImage } from '../../firebase/firebaseUtils';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [dob, setDob] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [file, setFile] = useState(null); // State for file upload
+  const [file, setFile] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -27,7 +26,7 @@ export default function SignUp() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setError('Passwords do not match!');
+      toast.error('Passwords do not match!');
       return;
     }
 
@@ -51,7 +50,6 @@ export default function SignUp() {
         firstName,
         lastName,
         email,
-        dob,
         imageUrl,
       });
 
@@ -59,8 +57,7 @@ export default function SignUp() {
       navigate('/');
       toast.success('Sign up successful!');
     } catch (error) {
-      setError('Error signing up: ' + error.message);
-      console.error('Error signing up:', error);
+      toast.error('Error signing up:', error);
     }
   };
 
@@ -114,16 +111,6 @@ export default function SignUp() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="dob">Date of Birth</label>
-          <input
-            type="date"
-            id="dob"
-            value={dob}
-            onChange={(e) => setDob(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -154,15 +141,19 @@ export default function SignUp() {
             onChange={handleFileChange}
           />
         </div>
-        <Button onClick={handleSignUp} type="submit">
-          Sign Up
-        </Button>
       </form>
       {error && <p className="error-message">{error}</p>}
-      <p className="signin-message">
-        Already have an account? <Link to="/signin">Sign In</Link>
-      </p>
-      <ToastContainer />
+      <Button onClick={handleSignUp} type="submit">
+        Sign Up
+      </Button>
+      <div className="secondary-links">
+        <p className="signup-message">
+          Don't have an account? <Link to="/Signin">Sign in</Link>
+        </p>
+        <p className="forgot-password">
+          <Link to="/ForgotPassword">Forgot Password?</Link>
+        </p>
+      </div>
     </div>
   );
 }

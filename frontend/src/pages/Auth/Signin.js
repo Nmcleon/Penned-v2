@@ -4,6 +4,7 @@ import { auth } from '../../firebase/firebase';
 import './Auth.css';
 import { Button } from '../../components/Button/Button';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ export default function SignIn() {
       await signInWithEmailAndPassword(auth, email, password);
       navigate('/');
     } catch (error) {
-      setError('Invalid email or password');
+      toast.error('Invalid email or password');
       console.error('Error signing in:', error);
     }
   };
@@ -53,9 +54,14 @@ export default function SignIn() {
       <div className="button-container">
         <Button onClick={handleSignIn}>Sign in</Button>
       </div>
-      <p className="signup-message">
-        Don't have an account? <Link to="/Signup">Sign Up</Link>
-      </p>
+      <div className="secondary-links">
+        <p className="signup-message">
+          Don't have an account? <Link to="/Signup">Sign Up</Link>
+        </p>
+        <p className="forgot-password">
+          <Link to="/ForgotPassword">Forgot Password?</Link>
+        </p>
+      </div>
     </div>
   );
 }

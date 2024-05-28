@@ -16,11 +16,11 @@ const useFetch = (collectionName) => {
           docs.push({ ...doc.data(), id: doc.id });
         });
         setData(docs);
+        console.log('Fetched data:', data);
         setIsLoading(false);
       } catch (error) {
         console.error('Error getting documents: ', error);
         setError(error.message);
-        setIsLoading(false);
       }
     };
 
