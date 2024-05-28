@@ -9,6 +9,10 @@
   padding: 20px;
 }
 
+form {
+  border-color: var(--color-primary-dark);
+}
+
 .create-article form {
   display: flex;
   flex-direction: column;

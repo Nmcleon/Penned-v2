@@ -7,7 +7,7 @@ import Contact from './pages/Contact/Contact';
 import Blogs from './pages/blogs/Blogs';
 import Author from './pages/author/Author';
 import Article from './pages/article/Article';
-import CreateArticle from './pages/blogs/CreateArticle';
+import CreateArticle from './pages/article/CreateArticle';
 import SignIn from './pages/Auth/Signin';
 import SignUp from './pages/Auth/Signup';
 import ForgotPassword from './pages/Auth/ForgotPassword';

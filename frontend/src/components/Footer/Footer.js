@@ -2,6 +2,7 @@ import React from 'react';
 import './Footer.css';
 import send from '../../assets/send-icon.svg';
 import { Link } from 'react-router-dom';
+import { Button } from '../Button/Button';
 
 export default function Footer() {
   return (
@@ -18,9 +19,7 @@ export default function Footer() {
               type="email"
               placeholder="Your Email"
             />
-            <button className="newsletter-cta">
-              <img src={send} alt="" />
-            </button>
+            <Button>Send</Button>
           </div>
         </div>
         <div className="footer-link">
