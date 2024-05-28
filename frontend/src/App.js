@@ -10,11 +10,14 @@ import Article from './pages/article/Article';
 import CreateArticle from './pages/blogs/CreateArticle';
 import SignIn from './pages/Auth/Signin';
 import SignUp from './pages/Auth/Signup';
+import ForgotPassword from './pages/Auth/ForgotPassword';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <Router>
-      <>
+    <>
+      <Router>
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -28,9 +31,22 @@ function App() {
           <Route exact path="/Create" element={<CreateArticle />} />
           <Route exact path="/SignUp" element={<SignUp />} />
           <Route exact path="/SignIn" element={<SignIn />} />
+          <Route exact path="/ForgotPassword" element={<ForgotPassword />} />
         </Routes>
-      </>
-    </Router>
+      </Router>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        theme="dark"
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
   );
 }
 
