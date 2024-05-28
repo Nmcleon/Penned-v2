@@ -13,6 +13,7 @@ import SignUp from './pages/Auth/Signup';
 import ForgotPassword from './pages/Auth/ForgotPassword';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NotFound from './pages/404/NotFound';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/SignUp" element={<SignUp />} />
           <Route exact path="/SignIn" element={<SignIn />} />
           <Route exact path="/ForgotPassword" element={<ForgotPassword />} />
+          <Route exact path="*" element={<NotFound />} />
         </Routes>
       </Router>
       <ToastContainer

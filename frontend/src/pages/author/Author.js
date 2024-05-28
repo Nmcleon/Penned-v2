@@ -1,22 +1,22 @@
+// Author.js
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import './Author.css';
 import Footer from '../../components/Footer/Footer';
-import useFetch from '../../customHook/useFetch';
 import Card from '../../components/CardSection/Card';
+import useFetch from '../../customHook/useFetch';
 
 export default function Author() {
   const { id } = useParams();
-  const { data, isPending, error } = useFetch('/data/db.json');
+  const { data: blogs, isLoading, error } = useFetch('blogs');
 
-  if (isPending) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
-  const author = data.blogs.find((blog) => blog.author.id === id)?.author;
+  const author = blogs.find((blog) => blog.author.id === id)?.author;
+  const authorArticles = blogs.filter((blog) => blog.author.id === id);
 
   if (!author) return <div>Author not found</div>;
-
-  const authorArticles = data.blogs.filter((blog) => blog.author.id === id);
 
   return (
     <>

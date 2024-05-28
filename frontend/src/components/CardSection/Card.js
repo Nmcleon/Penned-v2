@@ -34,7 +34,7 @@ export default function Card({
         </div>
       </div>
       <div className="card-action">
-        <Placard author={author} />
+        {author && <Placard id={id} />} {/* Ensure author is defined */}
         <div className="card-cta">
           <Link to={`/Article/${id}`}>
             <Button
