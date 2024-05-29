@@ -5,18 +5,25 @@ import { db } from '../../firebase/firebase';
 import './CreateArticle.css';
 import { Button } from '../../components/Button/Button';
 import { auth } from '../../firebase/firebase';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import {
+  ref,
+  uploadBytesResumable,
+  getStorage,
+  getDownloadURL,
+} from 'firebase/storage';
+import { format } from 'date-fns';
 
 export default function CreateArticle() {
   const [title, setTitle] = useState('');
-  const [img, setImg] = useState('');
   const [subtopic1, setSubtopic1] = useState('');
   const [details1, setDetails1] = useState('');
   const [subtopic2, setSubtopic2] = useState('');
   const [details2, setDetails2] = useState('');
   const [tags, setTags] = useState([]);
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [imgUrl, setImgUrl] = useState('');
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -34,15 +41,20 @@ export default function CreateArticle() {
       return;
     }
 
+    if (!imgUrl) {
+      toast.error('Please wait for the image to finish uploading.');
+      return;
+    }
+
     const blog = {
       title,
-      image: img,
+      image: imgUrl,
       tags,
-      publishedAt: new Date().toISOString(),
+      publishedAt: format(new Date(), 'yyyy-MM-dd'),
       author: {
         uid: auth.currentUser.uid,
-        name: 'User Name',
-        image: '',
+        name: auth.currentUser.displayName || 'User Name',
+        image: auth.currentUser.photoURL || '',
       },
       sections: [
         { subtopic: subtopic1, details: details1 },
@@ -62,15 +74,30 @@ export default function CreateArticle() {
     }
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImg(reader.result);
-      };
-      reader.readAsDataURL(file);
+    if (!file) {
+      return;
     }
+
+    const storage = getStorage();
+    const storageRef = ref(storage, `images/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        // Handle progress, success, and errors
+      },
+      (error) => {
+        console.error('Upload failed:', error);
+        toast.error('Failed to upload image');
+      },
+      async () => {
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        setImgUrl(downloadURL);
+      }
+    );
   };
 
   return (
@@ -136,6 +163,7 @@ export default function CreateArticle() {
             <label>Tags</label>
             <input
               type="text"
+              placeholder="Use a comma (,) to separate tags"
               value={tags.join(',')}
               onChange={(e) => setTags(e.target.value.split(','))}
             />
