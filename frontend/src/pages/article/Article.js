@@ -24,6 +24,17 @@ export default function Article() {
     .filter((otherBlog) => otherBlog.id !== id)
     .slice(0, 2);
 
+  {
+    /*  (Storage Max limit excided thus fetching data from Local)
+  const blogsWithImageUrls = blogs.map(async (blog) => {
+    const storage = getStorage(); // Get a reference to the Firebase Storage service
+    const imageRef = ref(storage, `images/${blog.image}`); // Reference to the image in Firebase Storage
+    const imageUrl = await getDownloadURL(imageRef); // Fetch the image URL
+    return { ...blog, imageUrl }; // Return the blog data with the image URL added
+  });
+*/
+  }
+
   return (
     <>
       <section className="article">
@@ -35,6 +46,12 @@ export default function Article() {
           <Badge tags={blog.tags} publishedAt={blog.publishedAt} />
         </div>
         <div className="article-img">
+          {/*
+          <img
+            src={blog.imageUrl} // Use the image URL fetched from Firebase Storage
+            alt={blog.title}
+          />*/}
+
           <img
             src={`${process.env.PUBLIC_URL}/images/${blog.image}`}
             alt={blog.title}
