@@ -102,6 +102,7 @@ function Navbar() {
               </li>
             </div>
           </ul>
+          <Button to="/Profile">Profile</Button>
           {button && !currentUser && (
             <Button to="/SignIn" buttonStyle="btn--outline">
               Sign in

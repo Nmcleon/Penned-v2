@@ -23,6 +23,12 @@ export default function SignIn() {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSignIn(e);
+    }
+  };
+
   return (
     <div className="auth-container">
       <h2>Sign In</h2>
@@ -46,6 +52,7 @@ export default function SignIn() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyPress={handleKeyPress}
             required
           />
         </div>

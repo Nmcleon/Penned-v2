@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -14,6 +15,8 @@ import ForgotPassword from './pages/Auth/ForgotPassword';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NotFound from './pages/404/NotFound';
+import Profile from './pages/profile/Profile';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
           <Route exact path="/SignIn" element={<SignIn />} />
           <Route exact path="/ForgotPassword" element={<ForgotPassword />} />
           <Route exact path="*" element={<NotFound />} />
+          <Route path="/Profile" element={<PrivateRoute />}>
+            <Route path="/Profile" element={<Profile />} />
+          </Route>
         </Routes>
       </Router>
       <ToastContainer

@@ -15,6 +15,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [file, setFile] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -51,6 +52,7 @@ export default function SignUp() {
         lastName,
         email,
         imageUrl,
+        username: username || `${firstName} ${lastName}`,
       });
 
       // Navigate to home page and show success message
@@ -74,7 +76,10 @@ export default function SignUp() {
             pattern="[A-Za-zÀ-ž\s]{3,}"
             maxLength="35"
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+              setUsername(e.target.value + ' ');
+            }}
             required
           />
           <p className="form-help">
@@ -90,7 +95,10 @@ export default function SignUp() {
             pattern="[A-Za-zÀ-ž\s]{3,}"
             maxLength="40"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={(e) => {
+              setLastName(e.target.value);
+              setUsername(firstName + ' ' + e.target.value);
+            }}
             required
           />
           <p className="form-help">
@@ -139,6 +147,17 @@ export default function SignUp() {
             id="upload-image"
             accept="image/*"
             onChange={handleFileChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Combined First and Last Name"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            required
           />
         </div>
       </form>
