@@ -166,9 +166,6 @@ img {
     text-transform: uppercase;
     color: var(--text-color);
   }
-
-  .abt-header {
-  }
 }
 
 @media (max-width: 640px) {
