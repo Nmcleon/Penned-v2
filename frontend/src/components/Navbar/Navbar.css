@@ -10,7 +10,7 @@ li {
 }
 
 .dropdown-toggle {
-  background: none;
+  background: var(--color-secondary);
   color: var(--color-primary-dark);
   border: none;
   cursor: pointer;

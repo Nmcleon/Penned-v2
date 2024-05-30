@@ -3,7 +3,7 @@
 .placard {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   background-color: transparent;
   border-radius: 8px;
 }
@@ -14,9 +14,6 @@
   border-radius: 50%;
   border: 2px solid var(--color-secondary-dark);
   overflow: hidden;
-}
-
-.placard-img img {
 }
 
 .placard-name {

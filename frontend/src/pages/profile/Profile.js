@@ -42,7 +42,7 @@ export default function Profile() {
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
-        toast.error('Error fetching user data');
+        console.error('Error fetching user data');
       }
     };
 
@@ -60,7 +60,7 @@ export default function Profile() {
         setBlogs(userBlogs);
       } catch (error) {
         console.error('Error fetching blogs:', error);
-        toast.error('Error fetching blogs');
+        console.error('Error fetching blogs');
       }
     };
 

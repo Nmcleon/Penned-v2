@@ -46,7 +46,7 @@ export default function Article() {
                 setImageUrl(`${process.env.PUBLIC_URL}/images/${blog.image}`);
               }
               setLoadingImage(false);
-            }, 300000); // 5 minutes delay
+            }, 150);
           }
         }
       }

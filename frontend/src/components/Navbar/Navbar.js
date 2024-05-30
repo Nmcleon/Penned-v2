@@ -86,7 +86,15 @@ function Navbar() {
             <div className="mobile">
               {currentUser ? (
                 <li className="nav-item">
-                  <p>Hi, {currentUser.firstName}</p>
+                  <p
+                    onClick={
+                      <Link to="/SignIn" buttonStyle="btn--outline">
+                        Sign in
+                      </Link>
+                    }
+                  >
+                    Hi, {currentUser.firstName}
+                  </p>
                 </li>
               ) : null}
               <li className="nav-item">
@@ -102,7 +110,6 @@ function Navbar() {
               </li>
             </div>
           </ul>
-          <Button to="/Profile">Profile</Button>
           {button && !currentUser && (
             <Button to="/SignIn" buttonStyle="btn--outline">
               Sign in
@@ -117,6 +124,11 @@ function Navbar() {
                 }
               >
                 <ul>
+                  <li>
+                    <Link to="/Profile" buttonStyle="btn--outline">
+                      My Profile
+                    </Link>
+                  </li>
                   <li>
                     <Button onClick={handleLogout} buttonStyle="btn--outline">
                       Log out
