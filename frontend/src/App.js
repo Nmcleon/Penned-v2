@@ -30,6 +30,7 @@ function App() {
           <Route exact path="/Blogs" element={<Blogs />} />
           <Route exact path="/Author" element={<Author />} />
           <Route exact path="/Author/:id" element={<Author />} />
+          <Route exact path="/Author/:uid" element={<Author />} />
           <Route exact path="/Article" element={<Article />} />
           <Route exact path="/Article/:id" element={<Article />} />
           <Route exact path="/Create" element={<CreateArticle />} />

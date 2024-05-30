@@ -77,7 +77,9 @@ export default function Placard({ id }) {
       </div>
       <div className="placard-name">
         <h4>
-          <Link to={`/author/${author.id}`}>{author.name}</Link>
+          <Link to={`/author/${author.uid ? author.uid : author.id}`}>
+            {author.name}
+          </Link>
         </h4>
       </div>
     </div>
