@@ -4,7 +4,7 @@ import { auth, db } from '../../firebase/firebase';
 import './Auth.css';
 import { Button } from '../../components/Button/Button';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 import { uploadImage } from '../../firebase/firebaseUtils';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,7 +32,6 @@ export default function SignUp() {
     }
 
     try {
-      // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -40,13 +39,11 @@ export default function SignUp() {
       );
       const user = userCredential.user;
 
-      // Upload image if file is selected
       let imageUrl = '';
       if (file) {
         imageUrl = await uploadImage(file, user.uid);
       }
 
-      // Save user data in Firestore
       await setDoc(doc(db, 'users', user.uid), {
         firstName,
         lastName,
@@ -55,7 +52,6 @@ export default function SignUp() {
         username: username || `${firstName} ${lastName}`,
       });
 
-      // Navigate to home page and show success message
       navigate('/');
       toast.success('Sign up successful!');
     } catch (error) {

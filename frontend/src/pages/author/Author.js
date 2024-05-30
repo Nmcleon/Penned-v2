@@ -24,7 +24,6 @@ export default function Author() {
           setUser(userData);
           console.log('User Data:', userData);
 
-          // Fetch user articles
           const blogsCollection = collection(db, 'blogs');
           const snapshot = await getDocs(blogsCollection);
           const userBlogs = snapshot.docs
@@ -36,11 +35,9 @@ export default function Author() {
           setUserArticles(userBlogs);
           console.log('User Articles:', userBlogs);
 
-          // Set image URL directly if it's provided
           if (userData.image) {
             setImageUrl(userData.image);
           } else {
-            // Fetch user image from storage
             const storage = getStorage();
             const fetchImage = async (folder) => {
               const imageRef = ref(storage, `${folder}/${userData.image}`);

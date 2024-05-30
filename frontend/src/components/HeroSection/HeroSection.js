@@ -64,13 +64,12 @@ export default function HeroSection() {
   return (
     <div className="hero">
       <div className="hero-banner">
-        {/* Check if the image URL has been fetched */}
         {isImageLoading ? (
           <div>Loading Image...</div>
         ) : (
           <img
             src={imageUrl || `/images/${latestBlog.image}`}
-            alt="Latest Blog Image"
+            alt="Latest Blog"
           />
         )}
       </div>

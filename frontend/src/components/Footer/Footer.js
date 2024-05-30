@@ -1,6 +1,5 @@
 import React from 'react';
 import './Footer.css';
-import send from '../../assets/send-icon.svg';
 import { Link } from 'react-router-dom';
 import { Button } from '../Button/Button';
 

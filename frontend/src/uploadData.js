@@ -1,4 +1,4 @@
-// src/uploadData.js (a script to upload data to Firestore, run this once)
+// script to upload data to Firestore, run once
 import { db } from './firebase/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 

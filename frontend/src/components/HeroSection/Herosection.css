@@ -35,8 +35,6 @@
   top: 0;
   width: 50%;
   height: 100%;
-  /*background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);*/
   padding: 24px;
   box-sizing: border-box;
 }
