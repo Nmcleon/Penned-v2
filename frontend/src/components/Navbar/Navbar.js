@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../assets/logo.svg';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Button } from '../Button/Button';
 import './Navbar.css';
+import { useAuth } from '../../context/AuthContext';
+import { signOut } from 'firebase/auth';
+import { auth, db } from '../../firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 function Navbar() {
+  const { currentUser } = useAuth();
   const [click, setClick] = useState(false);
+  const [firstName, setFirstName] = useState('');
+
   const handleClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
 
@@ -20,9 +27,29 @@ function Navbar() {
 
   useEffect(() => {
     showButton();
-  }, []);
+    const fetchUserData = async () => {
+      if (currentUser) {
+        const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+        if (userDoc.exists()) {
+          setFirstName(userDoc.data().firstName);
+        }
+      }
+    };
+    fetchUserData();
+  }, [currentUser]);
 
   window.addEventListener('resize', showButton);
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log('User signed out');
+        closeMenu();
+      })
+      .catch((error) => {
+        console.error('Error signing out: ', error);
+      });
+  };
 
   return (
     <>
@@ -37,39 +64,79 @@ function Navbar() {
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMenu}>
+              <NavLink to="/" className="nav-links" onClick={closeMenu}>
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/Blogs" className="nav-links" onClick={closeMenu}>
+              <NavLink to="/Blogs" className="nav-links" onClick={closeMenu}>
                 Blogs
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/About" className="nav-links" onClick={closeMenu}>
+              <NavLink to="/About" className="nav-links" onClick={closeMenu}>
                 About us
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/Contact" className="nav-links" onClick={closeMenu}>
+              <NavLink to="/Contact" className="nav-links" onClick={closeMenu}>
                 Contact
-              </Link>
+              </NavLink>
             </li>
-            <li>
-              <Link
-                to="/sign-up"
-                className="nav-links-mobile"
-                onClick={closeMenu}
-              >
-                Sign up
-              </Link>
-            </li>
+            <div className="mobile">
+              {currentUser ? (
+                <li className="nav-item">
+                  <p
+                    onClick={
+                      <Link to="/SignIn" buttonStyle="btn--outline">
+                        Sign in
+                      </Link>
+                    }
+                  >
+                    Hi, {currentUser.firstName}
+                  </p>
+                </li>
+              ) : null}
+              <li className="nav-item">
+                <Button
+                  to={!currentUser ? '/signin' : ''}
+                  className="nav-links-mobile"
+                  onClick={() => (!currentUser ? closeMenu() : handleLogout())}
+                  buttonSize="btn--large"
+                  buttonStyle="btn--outline"
+                >
+                  {!currentUser ? 'Sign in' : 'Sign out'}
+                </Button>
+              </li>
+            </div>
           </ul>
-          {button && (
+          {button && !currentUser && (
             <Button to="/SignIn" buttonStyle="btn--outline">
               Sign in
             </Button>
+          )}
+          {button && currentUser && (
+            <div className="dropdown">
+              <p onClick={handleClick}>Hi, {firstName}</p>
+              <div
+                className={
+                  click ? 'dropdown-content active' : 'dropdown-content'
+                }
+              >
+                <ul>
+                  <li>
+                    <Link to="/Profile" buttonStyle="btn--outline">
+                      My Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Button onClick={handleLogout} buttonStyle="btn--outline">
+                      Log out
+                    </Button>
+                  </li>
+                </ul>
+              </div>
+            </div>
           )}
         </div>
       </nav>

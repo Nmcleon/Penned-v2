@@ -51,15 +51,25 @@ button:hover {
   background-color: #0056b3;
 }
 
-.signup-message {
+.secondary-links {
   margin-top: 20px;
   font-size: 14px;
+  display: flex;
+  gap: 16px;
 }
 
 .signup-message a {
+  color: var(--color-error);
+}
+.forgot-password a {
+  color: #0056b3;
+}
+
+.forgot-password a:hover,
+.signup-message a:hover {
   text-decoration: underline;
 }
 
-.signup-message a:hover {
-  text-decoration: none;
+.error-message {
+  margin-bottom: 16px;
 }

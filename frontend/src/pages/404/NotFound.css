@@ -1,0 +1,25 @@
+@import url('../../assets/styles/styles.css');
+
+.notfound-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 80px;
+}
+
+.notfound-header {
+  color: var(--color-primary-dark);
+  font-size: 48px;
+}
+
+.notfound-subtitle {
+  color: var(--color-dark-grey);
+  font-size: 24px;
+}
+
+.notfound-text {
+  font-size: 24px;
+  color: var(--color-dark-grey);
+}

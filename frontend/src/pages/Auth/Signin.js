@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
-import bcrypt from 'bcryptjs';
+import { auth } from '../../firebase/firebase';
 import './Auth.css';
+import { Button } from '../../components/Button/Button';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 export default function SignIn() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/login', {
-        username,
-        password,
-      });
-      const { token } = response.data;
-      localStorage.setItem('authToken', token);
+      await signInWithEmailAndPassword(auth, email, password);
       navigate('/');
     } catch (error) {
+      toast.error('Invalid email or password');
       console.error('Error signing in:', error);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSignIn(e);
     }
   };
 
@@ -29,13 +34,13 @@ export default function SignIn() {
       <h2>Sign In</h2>
       <form onSubmit={handleSignIn}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <input
-            type="text"
-            id="username"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            id="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -47,16 +52,23 @@ export default function SignIn() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyPress={handleKeyPress}
             required
           />
         </div>
-        <button type="submit">
-          <Link to="/">Sign in</Link>
-        </button>
       </form>
-      <p className="signup-message">
-        Don't have an account? <Link to="/Signup">Sign Up</Link>
-      </p>
+      <div> {error && <p className="error-message">{error}</p>}</div>
+      <div className="button-container">
+        <Button onClick={handleSignIn}>Sign in</Button>
+      </div>
+      <div className="secondary-links">
+        <p className="signup-message">
+          Don't have an account? <Link to="/Signup">Sign Up</Link>
+        </p>
+        <p className="forgot-password">
+          <Link to="/ForgotPassword">Forgot Password?</Link>
+        </p>
+      </div>
     </div>
   );
 }

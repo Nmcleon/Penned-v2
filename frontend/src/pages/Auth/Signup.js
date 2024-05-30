@@ -1,41 +1,65 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
-import bcrypt from 'bcryptjs';
+import { auth, db } from '../../firebase/firebase';
 import './Auth.css';
+import { Button } from '../../components/Button/Button';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { uploadImage } from '../../firebase/firebaseUtils';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [dob, setDob] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [username, setUsername] = useState('');
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Passwords do not match!');
+      toast.error('Passwords do not match!');
       return;
     }
+
     try {
-      const newUser = {
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Upload image if file is selected
+      let imageUrl = '';
+      if (file) {
+        imageUrl = await uploadImage(file, user.uid);
+      }
+
+      // Save user data in Firestore
+      await setDoc(doc(db, 'users', user.uid), {
         firstName,
         lastName,
         email,
-        dob,
-        password,
         imageUrl,
-      };
-      const response = await axios.post(
-        'http://localhost:8000/api/register',
-        newUser
-      );
-      navigate('/signin');
+        username: username || `${firstName} ${lastName}`,
+      });
+
+      // Navigate to home page and show success message
+      navigate('/');
+      toast.success('Sign up successful!');
     } catch (error) {
-      console.error('Error signing up:', error);
+      toast.error('Error signing up:', error);
     }
   };
 
@@ -52,7 +76,10 @@ export default function SignUp() {
             pattern="[A-Za-zÀ-ž\s]{3,}"
             maxLength="35"
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+              setUsername(e.target.value + ' ');
+            }}
             required
           />
           <p className="form-help">
@@ -68,7 +95,10 @@ export default function SignUp() {
             pattern="[A-Za-zÀ-ž\s]{3,}"
             maxLength="40"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={(e) => {
+              setLastName(e.target.value);
+              setUsername(firstName + ' ' + e.target.value);
+            }}
             required
           />
           <p className="form-help">
@@ -89,16 +119,6 @@ export default function SignUp() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="dob">Date of Birth</label>
-          <input
-            type="date"
-            id="dob"
-            value={dob}
-            onChange={(e) => setDob(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -110,20 +130,49 @@ export default function SignUp() {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="upload-image">Upload Image</label>
           <input
             type="file"
             id="upload-image"
             accept="image/*"
-            onChange={(e) =>
-              setImageUrl(URL.createObjectURL(e.target.files[0]))
-            }
+            onChange={handleFileChange}
           />
         </div>
-        <button type="submit">
-          <Link to="/">Sign In</Link>
-        </button>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Combined First and Last Name"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            required
+          />
+        </div>
       </form>
+      {error && <p className="error-message">{error}</p>}
+      <Button onClick={handleSignUp} type="submit">
+        Sign Up
+      </Button>
+      <div className="secondary-links">
+        <p className="signup-message">
+          Don't have an account? <Link to="/Signin">Sign in</Link>
+        </p>
+        <p className="forgot-password">
+          <Link to="/ForgotPassword">Forgot Password?</Link>
+        </p>
+      </div>
     </div>
   );
 }

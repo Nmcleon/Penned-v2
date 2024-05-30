@@ -2,14 +2,12 @@ import React from 'react';
 import { format } from 'date-fns';
 import './Badge.css';
 
-// Define the formatDate function here
 const formatDate = (dateString) => {
   try {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return format(new Date(dateString), options);
   } catch (error) {
     console.error('Failed to format date:', dateString, error);
-    // Return a fallback value or handle the error as needed
     return 'Invalid Date';
   }
 };
@@ -20,7 +18,7 @@ export default function Badge({ tags = [], publishedAt }) {
 
   if (typeof publishedAt !== 'string') {
     console.error('publishedAt is not a string:', typeof publishedAt);
-    return null; // Or return a placeholder element
+    return null;
   }
 
   return (

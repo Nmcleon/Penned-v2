@@ -1,0 +1,140 @@
+// src/uploadData.js (a script to upload data to Firestore, run this once)
+import { db } from './firebase/firebase';
+import { collection, addDoc } from 'firebase/firestore';
+
+const uploadData = async () => {
+  const blogs = [
+    {
+      id: '1',
+      title: 'Rivian stock plummets to a new low',
+      image: 'rivian.jpg',
+      userId: 'Young King',
+      author: {
+        id: '1',
+        name: 'Young King',
+        image: 'young-king.png',
+      },
+      tags: ['tech', 'auto'],
+      publishedAt: '2024-05-16',
+      sections: [
+        {
+          subtopic: 'Reasons for the Plummet',
+          details:
+            "The recent decline in Rivian's stock price can be attributed to a variety of factors. One significant reason is the broader market volatility, particularly in the tech and automotive sectors. Additionally, concerns about supply chain disruptions and production delays have weighed heavily on investor sentiment.",
+        },
+        {
+          subtopic: 'Impact on Investors',
+          details:
+            "The sharp decline in Rivian's stock price has had a significant impact on investors. Many shareholders have experienced losses as the stock continues to plummet. Some long-term investors remain optimistic about Rivian's prospects and see this downturn as a buying opportunity, while others are concerned about the company's ability to navigate current challenges.",
+        },
+      ],
+    },
+    {
+      id: '2',
+      title: 'Another Article Title',
+      image: 'another.jpg',
+      userId: 'Big G',
+      author: {
+        id: '2',
+        name: 'Big G',
+        image: 'big-g.png',
+      },
+      tags: ['trend', 'life'],
+      publishedAt: '2024-05-16',
+      sections: [
+        {
+          subtopic: 'Section One',
+          details:
+            "The recent decline in Rivian's stock price can be attributed to a variety of factors. One significant reason is the broader market volatility, particularly in the tech and automotive sectors. Additionally, concerns about supply chain disruptions and production delays have weighed heavily on investor sentiment.",
+        },
+        {
+          subtopic: 'Impact on Investors',
+          details:
+            "The sharp decline in Rivian's stock price has had a significant impact on investors. Many shareholders have experienced losses as the stock continues to plummet. Some long-term investors remain optimistic about Rivian's prospects and see this downturn as a buying opportunity, while others are concerned about the company's ability to navigate current challenges.",
+        },
+      ],
+    },
+    {
+      id: '3',
+      title: 'Another Article Title',
+      image: 'abt-reason.jpg',
+      userId: 'Lucy Lee',
+      author: {
+        id: '3',
+        name: 'Lucy Lee',
+        image: 'lucy-lee.png',
+      },
+      tags: ['tech', 'auto'],
+      publishedAt: '2024-05-16',
+      sections: [
+        {
+          subtopic: 'Section One',
+          details:
+            "The recent decline in Rivian's stock price can be attributed to a variety of factors. One significant reason is the broader market volatility, particularly in the tech and automotive sectors. Additionally, concerns about supply chain disruptions and production delays have weighed heavily on investor sentiment.",
+        },
+        {
+          subtopic: 'Impact on Investors',
+          details:
+            "The sharp decline in Rivian's stock price has had a significant impact on investors. Many shareholders have experienced losses as the stock continues to plummet. Some long-term investors remain optimistic about Rivian's prospects and see this downturn as a buying opportunity, while others are concerned about the company's ability to navigate current challenges.",
+        },
+      ],
+    },
+  ];
+
+  const users = [
+    {
+      id: 'user123',
+      username: 'exampleUser',
+      authenticationData: {
+        token: 'abc123',
+        expires: '2024-05-17T00:00:00Z',
+      },
+    },
+    {
+      id: 'user456',
+      username: 'anotherUser',
+      authenticationData: {
+        token: 'def456',
+        expires: '2024-05-18T00:00:00Z',
+      },
+    },
+    {
+      id: 'user789',
+      username: 'Young King',
+      authenticationData: {
+        token: 'ghi789',
+        expires: '2024-05-19T00:00:00Z',
+      },
+    },
+    {
+      id: 'user101112',
+      username: 'Big G',
+      authenticationData: {
+        token: 'jkl101112',
+        expires: '2024-05-20T00:00:00Z',
+      },
+    },
+    {
+      id: 'user131415',
+      username: 'Lucy Lee',
+      authenticationData: {
+        token: 'mno131415',
+        expires: '2024-05-21T00:00:00Z',
+      },
+    },
+  ];
+
+  try {
+    for (const blog of blogs) {
+      await addDoc(collection(db, 'blogs'), blog);
+    }
+    for (const user of users) {
+      await addDoc(collection(db, 'users'), user);
+    }
+    console.log('Data uploaded successfully');
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
+
+export default uploadData();

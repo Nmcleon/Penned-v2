@@ -1,5 +1,9 @@
 @import url('../../assets/styles/styles.css');
 
+button {
+  padding: 0;
+}
+
 .footer {
   position: relative;
   display: flex;
@@ -18,7 +22,7 @@
   top: 0;
   background: rgba(255, 255, 255, 0.12);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -32,17 +36,17 @@
   }
 }
 
-.newsletter-text {
+.newsletter-text > p {
   color: var(--color-white);
+  font-size: 24px;
 }
 
 .input-wrapper {
   display: flex;
-  border-radius: 40px;
+  align-items: center;
+  gap: 24px;
   max-width: 100%;
   position: relative;
-  background: var(--color-white);
-  box-shadow: 0 4px 20px -2px #e9e9e9;
 }
 
 .newsletter-input {
@@ -53,7 +57,7 @@
   transition: all 0.5s;
   width: 100%;
   padding: 1em 2rem;
-  border-radius: 50px;
+  border-radius: 8px;
 }
 
 .newsletter-input:hover,
@@ -64,8 +68,8 @@
 }
 
 .newsletter-cta img {
-  height: 34px;
-  width: 34px;
+  height: 36px;
+  width: 36px;
 }
 
 .newsletter-cta {
@@ -76,7 +80,7 @@
   aspect-ratio: 1;
   position: absolute;
   right: 0;
-  top: 10%;
+  width: 60px;
 }
 
 .footer-link {
@@ -132,6 +136,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .footer-nav ul {
