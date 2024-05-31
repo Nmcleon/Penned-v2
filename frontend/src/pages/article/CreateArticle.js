@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Footer from '../../components/Footer/Footer';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../../firebase/firebase';
 import './CreateArticle.css';
+import Footer from '../../components/Footer/Footer';
+import { addDoc, collection, getDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
 import { Button } from '../../components/Button/Button';
 import { auth } from '../../firebase/firebase';
 import { toast } from 'react-toastify';
@@ -23,12 +23,27 @@ export default function CreateArticle() {
   const [tags, setTags] = useState([]);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [imgUrl, setImgUrl] = useState('');
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
+    const fetchUserName = async () => {
+      if (auth.currentUser) {
+        const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid));
+        if (userDoc.exists()) {
+          setUserName(userDoc.data()?.username || 'User Name');
+        } else {
+          setUserName('User Name');
+        }
+      }
+    };
+
+    fetchUserName();
+
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setIsSignedIn(!!user);
     });
-    return unsubscribe;
+
+    return () => unsubscribe();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -52,7 +67,7 @@ export default function CreateArticle() {
       publishedAt: format(new Date(), 'yyyy-MM-dd'),
       author: {
         uid: auth.currentUser.uid,
-        name: auth.currentUser.displayName || 'User Name',
+        name: userName,
         image: auth.currentUser.photoURL || '',
       },
       sections: [
@@ -62,14 +77,14 @@ export default function CreateArticle() {
     };
 
     console.log('Article Created:', JSON.stringify(blog, null, 2));
-    toast.success('Article Created:', JSON.stringify(blog, null, 2));
+    toast.success('Article Created');
 
     try {
       const docRef = await addDoc(collection(db, 'blogs'), blog);
       console.log('Document written with ID: ', docRef.id);
     } catch (error) {
       console.error('Error adding document: ', error);
-      toast.error('Error adding document: ', error);
+      toast.error('Error adding document');
     }
   };
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Search.css';
 import { Button } from '../Button/Button';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase/firebase'; // Adjust the path according to your project structure
 
 export default function Search() {
   const [searchText, setSearchText] = useState('');
@@ -10,10 +12,19 @@ export default function Search() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/data/db.json')
-      .then((response) => response.json())
-      .then((data) => setArticles(data.blogs))
-      .catch((error) => console.error('Error fetching articles:', error));
+    const fetchArticles = async () => {
+      const articlesCollection = collection(db, 'blogs');
+      const snapshot = await getDocs(articlesCollection);
+      const fetchedArticles = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setArticles(fetchedArticles);
+    };
+
+    fetchArticles().catch((error) =>
+      console.error('Error fetching articles:', error)
+    );
   }, []);
 
   const handleSearchChange = (e) => {
@@ -36,10 +47,7 @@ export default function Search() {
       );
 
       if (authorMatch || titleMatch || matchingSections.length > 0) {
-        acc.push({
-          ...article,
-          matchingSections,
-        });
+        acc.push({ ...article, matchingSections });
       }
       return acc;
     }, []);
@@ -99,7 +107,6 @@ export default function Search() {
               {article.matchingSections.map((section, index) => (
                 <div key={index} className="search-section">
                   <h4>{section.subtopic}</h4>
-                  <p>{section.details}</p>
                 </div>
               ))}
             </div>

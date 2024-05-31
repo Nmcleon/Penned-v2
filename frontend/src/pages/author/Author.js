@@ -107,7 +107,7 @@ export default function Author() {
               alt={displayedAuthor.name}
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = '/images/default.png';
+                e.target.src = `/images/${author.image}`;
               }}
             />
           </div>

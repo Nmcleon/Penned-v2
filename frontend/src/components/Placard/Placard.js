@@ -71,7 +71,7 @@ export default function Placard({ id }) {
           alt={author.name}
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = '/path/to/default/image.png';
+            e.target.src = `/images/${author.image}`;
           }}
         />
       </div>
